@@ -34,9 +34,9 @@ services:
       context: .
       dockerfile: Containerfile.slurm-headnode
       args:
-        - BASE_IMAGE=${REGISTRY}vhpc-base:${VERSION}
-      cache_from:
-        - vhpc-base:${VERSION}
+        - BASE_IMAGE=vhpc-base-image
+      additional_contexts:
+        vhpc-base-image: service:vhpc-base-image
     hostname: slurm-headnode
     depends_on:
       - slurm-db                         # Ensure database starts before headnode
@@ -76,9 +76,9 @@ services:
       context: .
       dockerfile: Containerfile.slurm-worker
       args:
-        - BASE_IMAGE=${REGISTRY}vhpc-base:${VERSION}
-      cache_from:
-        - vhpc-base:${VERSION}
+        - BASE_IMAGE=vhpc-base-image
+      additional_contexts:
+        vhpc-base-image: service:vhpc-base-image
     volumes:
       - munge-key:/etc/munge:ro
       - slurm-config:/etc/slurm # Shared Slurm configuration volume

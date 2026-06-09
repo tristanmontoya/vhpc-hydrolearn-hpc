@@ -152,7 +152,7 @@ su - user
 srun hostname
 
 # Submit MPI job (intra-node)
-module load mpi/openmpi-x86_64
+module load mpi
 sbatch -N 1 -n 4 --wrap="mpirun -n 4 hostname"
 
 # Submit MPI job (inter-node)
@@ -270,11 +270,21 @@ template. Remember to also edit the `NodeName` line in
 
 ## Building the images
 
-The images are available on the [GitHub Container Registry](https://github.com/exactlab/vhpc/pkgs/container/vhpc-base). You can also build
-the images locally by running
+The images are available in GitHub Container Registry under
+`ghcr.io/tristanmontoya/`. You can also build the images locally by running
 
 ```bash
 docker compose build
+```
+
+Published images are built for `linux/amd64` and `linux/arm64`.
+
+If the requested image version is not published yet, build locally before
+starting the cluster:
+
+```bash
+docker compose build
+docker compose up -d
 ```
 
 ## Technical Details
@@ -352,8 +362,7 @@ production!
 ### MPI Jobs Failing
 
 - Ensure MPI programs are in shared storage (`/shared`)
-- Use `module load mpi/openmpi-x86_64` (or simply `module load mpi`) before
-  compilation
+- Use `module load mpi` before compilation
 - Submit jobs as non-root user (`user`)
 
 ### Job Output Location

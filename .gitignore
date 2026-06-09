@@ -1,0 +1,31 @@
+# Local runtime configuration
+packages.yml
+docker-compose.override.yml
+compose.override.yml
+*.env.local
+*.env.*.local
+
+# Local credentials and generated access keys
+id_ed25519
+id_ed25519.pub
+*.pem
+*.key
+
+# Logs and transient output
+*.log
+logs/
+tmp/
+temp/
+
+# Python cache files from local helper scripts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Editor and operating system metadata
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
