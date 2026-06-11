@@ -27,21 +27,21 @@ The tools are built from pinned upstream releases in `Containerfile.slurm-base`:
   and `OstrichMPI`
 
 They are installed under `/opt/hydrotools/bin`, which is included in `PATH` on
-the base, headnode, and worker images. Build metadata is written to
+the base, head (login) node, and worker images. Build metadata is written to
 `/opt/hydrotools/versions.env` inside the image.
 
 ## Images
 
 Published images use the repository name as their package prefix:
 
-- `ghcr.io/tristanmontoya/vhpc-hydrotools-base:v0.5.0`
-- `ghcr.io/tristanmontoya/vhpc-hydrotools-headnode:v0.5.0`
-- `ghcr.io/tristanmontoya/vhpc-hydrotools-worker:v0.5.0`
+- `ghcr.io/tristanmontoya/vhpc-hydrotools-base:v0.6.2`
+- `ghcr.io/tristanmontoya/vhpc-hydrotools-headnode:v0.6.2`
+- `ghcr.io/tristanmontoya/vhpc-hydrotools-worker:v0.6.2`
 
 The GitHub Actions workflow publishes `linux/amd64` and `linux/arm64` manifests
 for tag builds and manual workflow dispatches.
 
-## HydroLearn HPC assignment workflow
+## HydroLearn HPC Material
 
 The base image clones
 [`tristanmontoya/hydrolearn-hpc`](https://github.com/tristanmontoya/hydrolearn-hpc)
@@ -75,7 +75,7 @@ ssh -p 2222 user@localhost
 ```
 
 Use the password `password` when prompted. The head node SSH service is mapped
-to `127.0.0.1:2222` by `docker-compose.yml`.
+to `127.0.0.1:2222` by `docker-compose.yml`. To access the HydroLearn HPC material, navigate to the `/workspace/hydrolearn-hpc` directory on the head node.
 
 For more complete cluster usage instructions, configuration information,
 security notes, and the upstream licence, see the
